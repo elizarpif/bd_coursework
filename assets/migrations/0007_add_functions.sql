@@ -17,7 +17,7 @@ ALTER TABLE result_summas
 
 UPDATE result_summas
 SET year=2019
-where id = '9e384fea-57e8-4231-85e0-762550ef20d4';
+where id_retirees = (select id from retirees where insurance_number_of_individual_personal_account = '163-648-564 96');
 
 UPDATE public.work_experience
 SET place_of_work='ООО Веста'

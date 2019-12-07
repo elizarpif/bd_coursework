@@ -1,8 +1,8 @@
+from PyQt5.QtCore import QObject
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import *
 from config.config import Config
 from PyQt5 import uic, QtWidgets, QtSql
-
 CONFIG: Config = Config()
 
 
@@ -113,8 +113,11 @@ class InfoRetiree(QMainWindow):
     def InfoWorkExperience(self):
         sql = QtSql.QSqlQueryModel()
         query = "select * from info_work_experience('{}');".format(self.snils)
-        sqlq = QtSql.QSqlQuery(query)
         sql.setQuery(query)
+        sql.setHeaderData(0, 0x1, 'Опыт работы')
+        sql.setHeaderData(1, 0x1, 'Страховой взнос')
+        sql.setHeaderData(2, 0x1, 'Место работы')
+
         self.table.setModel(sql)
 
     def InitInfo(self):
@@ -131,6 +134,12 @@ class InfoRetiree(QMainWindow):
         sql = QtSql.QSqlQueryModel()
         query = "select * from info_retiree('{}','{}','{}');".format(self.name, self.surname, self.snils)
         sql.setQuery(query)
+        sql.setHeaderData(0, 0x1, 'Фамилия')
+        sql.setHeaderData(1, 0x1, 'Имя')
+        sql.setHeaderData(2, 0x1, 'Отчество')
+        sql.setHeaderData(3, 0x1, 'Дата регистрации')
+        sql.setHeaderData(4, 0x1, 'СНИЛС')
+        sql.setHeaderData(5, 0x1, 'Адрес')
         self.table.setModel(sql)
 
     def setDb(self, db):
@@ -145,6 +154,20 @@ class InfoRetiree(QMainWindow):
         sql = QtSql.QSqlQueryModel()
         query = "select * from info_summas('{}');".format(self.snils)
         sql.setQuery(query)
+        sql.setHeaderData(0, 0x1, 'Январь')
+        sql.setHeaderData(1, 0x1, 'Февраль')
+        sql.setHeaderData(2, 0x1, 'Март')
+        sql.setHeaderData(3, 0x1, 'Апрель')
+        sql.setHeaderData(4, 0x1, 'Май')
+        sql.setHeaderData(5, 0x1, 'Июнь')
+        sql.setHeaderData(6, 0x1, 'Июль')
+        sql.setHeaderData(7, 0x1, 'Август')
+        sql.setHeaderData(8, 0x1, 'Сентябрь')
+        sql.setHeaderData(9, 0x1, 'Октябрь')
+        sql.setHeaderData(10, 0x1, 'Ноябрь')
+        sql.setHeaderData(11, 0x1, 'Декабрь')
+        sql.setHeaderData(12, 0x1, 'Год')
+        sql.setHeaderData(13, 0x1, 'Итог')
         self.table.setModel(sql)
 
 
