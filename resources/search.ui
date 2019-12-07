@@ -35,7 +35,7 @@ background:url(background.jpg);
     </font>
    </property>
    <property name="text">
-    <string>Elena</string>
+    <string>Елена</string>
    </property>
   </widget>
   <widget class="QLabel" name="name_lb">
@@ -111,7 +111,7 @@ QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</s
     </font>
    </property>
    <property name="text">
-    <string>Ivanova</string>
+    <string>Иванова</string>
    </property>
   </widget>
   <widget class="QLabel" name="snils_lb">

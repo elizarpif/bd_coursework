@@ -5,6 +5,7 @@ from PyQt5 import uic, QtWidgets, QtSql
 
 CONFIG: Config = Config()
 
+
 class Search(QDialog):
     def __init__(self, conf):
         super(Search, self).__init__()
@@ -35,7 +36,6 @@ class Search(QDialog):
 #     def Cancel(self):
 #         self.close()
 
-
 class Client(QMainWindow):
     def LoadConfigParams(self):
         self.icon = self.Config.images.icon
@@ -63,6 +63,7 @@ class Client(QMainWindow):
         self.Info = InfoRetiree(self.Config)
         # self.combo.currentTextChanged.connect(self.comboChange)
 
+# добавить информацию о выллатах, типах пенсий
     def Search(self):
         print("in search")
         src = Search(self.Config)
@@ -78,10 +79,10 @@ class Client(QMainWindow):
         self.Info.show()
         self.Info.setDb(self.db)
         self.Info.setInfo(name, surname, snils)
+        self.Info.InitInfo()
+        self.setVisible(False)
 
         # self.colcount = rec.count()
-
-
 
     def Connect(self):
 
@@ -98,29 +99,37 @@ class Client(QMainWindow):
         self.db.setPassword(passw)
 
 
-
 class InfoRetiree(QMainWindow):
     def __init__(self, config):
         super(InfoRetiree, self).__init__()
-        self.setInfo("","","")
+        self.setInfo("", "", "")
+        self.patronymic = ""
         self.ui = uic.loadUi(config.ui.infoAbout, self)
-        #self.connect_btn.clicked.connect(self.Connect)
+        self.work_experience_btn.clicked.connect(self.Info_Work_Experience)
+        # self.connect_btn.clicked.connect(self.Connect)
+
+    def Info_Work_Experience(self):
+        sql = QtSql.QSqlQueryModel()
+        query = "select * from info_work_experience('{}');".format(self.snils)
+        sqlq = QtSql.QSqlQuery(query)
+        sql.setQuery(query)
+        self.table.setModel(sql)
+
+    def InitInfo(self):
+        query = "select * from info_retiree('{}','{}','{}');".format(self.name, self.surname, self.snils)
+        sql = QtSql.QSqlQuery(query)
+        while sql.next():
+            self.name = sql.value("name")
+            self.surname = sql.value("surname")
+            self.patronymic = sql.value("patronymic")
+        self.fio_info_lb.setText(self.surname+" "+self.name+" "+self.patronymic)
+        self.getInfo()
 
     def getInfo(self):
-        sql = QtSql.QSqlQuery()
-        query = "select info_retiree('{}','{}','{}');".format(self.name,self.surname,self.snils)
-        print(query)
-        sql.exec(query)
-        rec = sql.record()
-
-        print("в таблице столбцов:", rec.count())
-        print(rec)
-        self.model = QtSql.QSqlRelationalTableModel(self)
-
-        self.model.setTable(self.dbtables)
-        self.model.select()
-        print(self.model.lastError().text())
-        self.table.setModel(self.model)
+        sql = QtSql.QSqlQueryModel()
+        query = "select * from info_retiree('{}','{}','{}');".format(self.name, self.surname, self.snils)
+        sql.setQuery(query)
+        self.table.setModel(sql)
 
     def setDb(self, db):
         self.db = db
@@ -131,9 +140,9 @@ class InfoRetiree(QMainWindow):
         self.snils = snils
 
 
-
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     config = Config()
     config.load("configs/config.yaml")

@@ -55,7 +55,7 @@ width: 100%;
      <string>ФИО:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="fio_result_lb">
+   <widget class="QLabel" name="fio_info_lb">
     <property name="geometry">
      <rect>
       <x>60</x>

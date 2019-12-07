@@ -12,6 +12,8 @@ class DbConfig(YamlDataClassConfig):
     dbname: str = None
     dbrole: str = None
     dbpassword: str = None
+    db_worker: str = None
+    db_worker_password: str = None
 @dataclass
 class Ui(YamlDataClassConfig):
     search: str = None
@@ -27,9 +29,3 @@ class Config(YamlDataClassConfig):
     db: DbConfig = None
     ui: Ui = None
     images: Images = None
-    # def __init__(self):
-    #     with open('configs/config.yaml') as f:
-    #         cfg = yaml.load(f, Loader=yaml.FullLoader)
-    #     print(cfg['db']['dbname'])
-    #     print(cfg['ui'])
-    #     print(cfg['images'])
