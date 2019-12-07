@@ -1,0 +1,5 @@
+development:
+    dialect: postgres
+    datasource: host=127.0.0.1 dbname=pension_db user=pension_dba password=pension_dba sslmode=disable
+    dir: migrations
+    table: migrations
