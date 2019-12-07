@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1036</width>
+    <height>493</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow{
+background: url(background.jpg);
+color: #FDBE33 #000 #D77206;
+height: 50px;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget{
+background-image: url(:/background.jpg);
+}</string>
+   </property>
+   <widget class="QLabel" name="fio_lb">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>30</y>
+      <width>114</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+width: 100%;
+  padding: 0;
+  line-height: 42px;
+  background: #4a90e2;
+  border-width: 0;
+  color: white;
+  font-size: 20px;
+}</string>
+    </property>
+    <property name="text">
+     <string>ФИО:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="fio_result_lb">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>60</y>
+      <width>441</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+border-color: #F77A52;
+}</string>
+    </property>
+    <property name="text">
+     <string>Иванова Елена Павловна</string>
+    </property>
+   </widget>
+   <widget class="QTableView" name="table">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>100</y>
+      <width>929</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableView{
+background-image: url(background.jpg);
+}</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pension_btn">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>390</y>
+      <width>261</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+  color: white;
+  padding: .2em 2em;
+  outline: none;
+  border-width: 2px 0;
+  border-style: solid none;
+  border-color: #FDBE33 #000 #D77206;
+  border-radius: 6px;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+} 
+QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
+    </property>
+    <property name="text">
+     <string>Перерасчет</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="work_experience_btn">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>390</y>
+      <width>291</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+  color: white;
+  padding: .2em 2em;
+  outline: none;
+  border-width: 2px 0;
+  border-style: solid none;
+  border-color: #FDBE33 #000 #D77206;
+  border-radius: 6px;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+} 
+QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
+    </property>
+    <property name="text">
+     <string>Опыт работы</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="cv_btn">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>390</y>
+      <width>301</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+  color: white;
+  padding: .2em 2em;
+  outline: none;
+  border-width: 2px 0;
+  border-style: solid none;
+  border-color: #FDBE33 #000 #D77206;
+  border-radius: 6px;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+} 
+QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
+    </property>
+    <property name="text">
+     <string>Личная инф</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources>
+  <include location="../background_image.qrc"/>
+ </resources>
+ <connections/>
+</ui>

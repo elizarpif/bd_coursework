@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>435</width>
+    <height>488</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+background-image: url(background.jpg);
+}</string>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>51</y>
+     <width>391</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>10</number>
+    </property>
+    <property name="leftMargin">
+     <number>10</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>10</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QLabel" name="lb_host">
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+border-color: #F77A52;
+}</string>
+      </property>
+      <property name="text">
+       <string>host</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="ln_host">
+      <property name="text">
+       <string>localhost</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="lb_db">
+      <property name="text">
+       <string>database</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="ln_db">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>pension_db</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="lb_role">
+      <property name="text">
+       <string>role</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="ln_role">
+      <property name="text">
+       <string>pension_db</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="lb_password">
+      <property name="text">
+       <string>password</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="ln_password">
+      <property name="text">
+       <string>pension_db</string>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="accepted_btn">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>420</y>
+     <width>144</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  padding: .2em 2em;
+  outline: none;
+  border-width: 2px 0;
+  border-style: solid none;
+  border-color: #FDBE33 #000 #D77206;
+  border-radius: 6px;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: 0.2s;
+} 
+QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
+   </property>
+   <property name="text">
+    <string>Ok</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="canceled_btn">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>420</y>
+     <width>191</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  padding: .2em 2em;
+  outline: none;
+  border-width: 2px 0;
+  border-style: solid none;
+  border-color: #FDBE33 #000 #D77206;
+  border-radius: 6px;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: 0.2s;
+} 
+QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

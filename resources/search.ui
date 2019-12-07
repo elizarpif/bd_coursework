@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>310</width>
+    <height>491</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog{
+background:url(background.jpg);
+}</string>
+  </property>
+  <widget class="QLineEdit" name="ln_name">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>190</y>
+     <width>241</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Elena</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="name_lb">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>150</y>
+     <width>81</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Имя</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="surname_lb">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>60</y>
+     <width>181</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Фамилия</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="search_btn">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>390</y>
+     <width>221</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  padding: .2em 2em;
+  outline: none;
+  border-width: 2px 0;
+  border-style: solid none;
+  border-color: #FDBE33 #000 #D77206;
+  border-radius: 6px;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: 0.2s;
+} 
+QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
+   </property>
+   <property name="text">
+    <string>Найти</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="ln_surname">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>100</y>
+     <width>241</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Ivanova</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="snils_lb">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>250</y>
+     <width>91</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>СНИЛС</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="ln_snils">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>280</y>
+     <width>241</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>163-648-564 96</string>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../background_image.qrc"/>
+ </resources>
+ <connections/>
+</ui>
