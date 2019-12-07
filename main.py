@@ -10,7 +10,6 @@ class Search(QDialog):
     def __init__(self, conf):
         super(Search, self).__init__()
         self.ui = uic.loadUi(conf.ui.search, self)
-        self.setWindowTitle("Search retiree")
         self.search_btn.clicked.connect(self.Accepted)
 
     def getRetireeParams(self):
@@ -65,7 +64,6 @@ class Client(QMainWindow):
 
 # добавить информацию о выллатах, типах пенсий
     def Search(self):
-        print("in search")
         src = Search(self.Config)
         src.show()
         if (src.exec() == QDialog.Rejected):
