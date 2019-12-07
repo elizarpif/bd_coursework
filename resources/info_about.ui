@@ -93,6 +93,9 @@ border-color: #F77A52;
 background-image: url(background.jpg);
 }</string>
     </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>200</number>
+    </attribute>
    </widget>
    <widget class="QPushButton" name="pension_btn">
     <property name="geometry">

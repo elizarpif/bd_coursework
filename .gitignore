@@ -2,4 +2,4 @@ configs
 venv
 .idea
 master
-assets/dbconfig.yml
+assets/*.yml

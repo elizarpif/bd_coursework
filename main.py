@@ -105,10 +105,12 @@ class InfoRetiree(QMainWindow):
         self.setInfo("", "", "")
         self.patronymic = ""
         self.ui = uic.loadUi(config.ui.infoAbout, self)
-        self.work_experience_btn.clicked.connect(self.Info_Work_Experience)
+        self.work_experience_btn.clicked.connect(self.InfoWorkExperience)
+        self.cv_btn.clicked.connect(self.InfoRetiree)
+        self.pension_btn.clicked.connect(self.InfoResultSummas)
         # self.connect_btn.clicked.connect(self.Connect)
 
-    def Info_Work_Experience(self):
+    def InfoWorkExperience(self):
         sql = QtSql.QSqlQueryModel()
         query = "select * from info_work_experience('{}');".format(self.snils)
         sqlq = QtSql.QSqlQuery(query)
@@ -123,9 +125,9 @@ class InfoRetiree(QMainWindow):
             self.surname = sql.value("surname")
             self.patronymic = sql.value("patronymic")
         self.fio_info_lb.setText(self.surname+" "+self.name+" "+self.patronymic)
-        self.getInfo()
+        self.InfoRetiree()
 
-    def getInfo(self):
+    def InfoRetiree(self):
         sql = QtSql.QSqlQueryModel()
         query = "select * from info_retiree('{}','{}','{}');".format(self.name, self.surname, self.snils)
         sql.setQuery(query)
@@ -138,6 +140,12 @@ class InfoRetiree(QMainWindow):
         self.name = name
         self.surname = surname
         self.snils = snils
+
+    def InfoResultSummas(self):
+        sql = QtSql.QSqlQueryModel()
+        query = "select * from info_summas('{}');".format(self.snils)
+        sql.setQuery(query)
+        self.table.setModel(sql)
 
 
 if __name__ == "__main__":

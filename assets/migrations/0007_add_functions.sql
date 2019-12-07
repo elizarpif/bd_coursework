@@ -4,7 +4,7 @@
 -- перерасчет
 -- DROP ROLE IF EXISTS pension_worker;
 CREATE ROLE pension_worker WITH
-	ENCRYPTED PASSWORD 'pension_worker';
+    ENCRYPTED PASSWORD 'pension_worker';
 GRANT select, update, insert on all tables in schema public to pension_worker;
 grant select on all tables in schema public to pension_db;
 
@@ -15,7 +15,9 @@ COMMENT ON COLUMN public.work_experience.place_of_work IS 'Место работ
 ALTER TABLE result_summas
     ADD COLUMN year int;
 
-UPDATE result_summas SET year=2019 where id='9e384fea-57e8-4231-85e0-762550ef20d4';
+UPDATE result_summas
+SET year=2019
+where id = '9e384fea-57e8-4231-85e0-762550ef20d4';
 
 UPDATE public.work_experience
 SET place_of_work='ООО Веста'
@@ -47,21 +49,21 @@ CREATE OR REPLACE FUNCTION info_summas(IN snils varchar)
 AS
 $$
 BEGIN
-    return query SELECT january,
-                        february,
-                        march,
-                        april,
-                        may,
-                        june,
-                        july,
-                        august,
-                        september,
-                        october,
-                        november,
-                        december,
-                        year,
-                        result
-                 FROM result_summas
+    return query SELECT r.january,
+                        r.february,
+                        r.march,
+                        r.april,
+                        r.may,
+                        r.june,
+                        r.july,
+                        r.august,
+                        r.september,
+                        r.october,
+                        r.november,
+                        r.december,
+                        r.year,
+                        r.result
+                 FROM result_summas AS r
                  WHERE id_retirees =
                        (SELECT id from retirees where insurance_number_of_individual_personal_account = snils);
 END;
@@ -78,11 +80,12 @@ CREATE OR REPLACE FUNCTION info_work_experience(IN snils varchar)
                 place_of_work     varchar
             )
 AS
-    $$BEGIN
-        return query
-    select w.work_experience, w.insurance_payment, w.place_of_work from work_experience AS w;
+$$
+BEGIN
+    return query
+        select w.work_experience, w.insurance_payment, w.place_of_work from work_experience AS w;
 end;
-    $$language plpgsql;
+$$ language plpgsql;
 
 -- +migrate StatementEnd
 

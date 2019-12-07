@@ -13,8 +13,8 @@ VALUES (uuid_generate_v4(), 7600, (SELECT id
 CREATE OR REPLACE FUNCTION info_retiree(IN namein varchar, IN surnamein varchar, IN snilsin VARCHAR)
     returns TABLE
             (
-                name              varchar,
                 surname           varchar,
+                name              varchar,
                 patronymic        varchar,
                 registration_date date,
                 snils             varchar,
@@ -23,8 +23,8 @@ CREATE OR REPLACE FUNCTION info_retiree(IN namein varchar, IN surnamein varchar,
 AS
 $$
 BEGIN
-    return query SELECT r.name,
-                        r.surname,
+    return query SELECT r.surname,
+                        r.name,
                         r.patronymic,
                         r.registration_date,
                         r.insurance_number_of_individual_personal_account,
