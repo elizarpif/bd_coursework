@@ -34,17 +34,23 @@ background:url(background.jpg);
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>190</y>
+     <y>170</y>
      <width>241</width>
      <height>36</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
+     <pointsize>18</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit:hover{
+border: 2px solid #CB5721;
+border-radius: 22px;
+}</string>
    </property>
    <property name="text">
     <string>Елена</string>
@@ -54,10 +60,25 @@ background:url(background.jpg);
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>150</y>
+     <y>130</y>
      <width>81</width>
      <height>28</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel{
+background: rgb(0, 0, 0, 0); 
+font-family: serif, Georgia;
+font-size: 28px;
+letter-spacing: 2px;
+word-spacing: 2px;
+color: #A8491D;
+font-weight: 700;
+text-decoration: underline rgb(68, 68, 68);
+font-style: normal;
+font-variant: small-caps;
+text-transform: none;
+}</string>
    </property>
    <property name="text">
     <string>Имя</string>
@@ -67,10 +88,25 @@ background:url(background.jpg);
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>60</y>
+     <y>30</y>
      <width>181</width>
      <height>28</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel{
+background: rgb(0, 0, 0, 0); 
+font-family: serif, Georgia;
+font-size: 28px;
+letter-spacing: 2px;
+word-spacing: 2px;
+color: #A8491D;
+font-weight: 700;
+text-decoration: underline rgb(68, 68, 68);
+font-style: normal;
+font-variant: small-caps;
+text-transform: none;
+}</string>
    </property>
    <property name="text">
     <string>Фамилия</string>
@@ -79,9 +115,9 @@ background:url(background.jpg);
   <widget class="QPushButton" name="search_btn">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>30</x>
      <y>390</y>
-     <width>221</width>
+     <width>241</width>
      <height>61</height>
     </rect>
    </property>
@@ -99,8 +135,12 @@ background:url(background.jpg);
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
   transition: 0.2s;
 } 
-QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
-QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
+QPushButton:active { 
+background: linear-gradient(#f59500, #f5ae00) #f59500; 
+}
+QPushButton:active:hover{ 
+background: linear-gradient(#f5ae00, #f59500) #f5ae00; 
+}</string>
    </property>
    <property name="text">
     <string>Найти</string>
@@ -110,17 +150,23 @@ QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</s
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>100</y>
+     <y>80</y>
      <width>241</width>
      <height>36</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
+     <pointsize>18</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit:hover{
+border: 2px solid #CB5721;
+border-radius: 22px;
+}</string>
    </property>
    <property name="text">
     <string>Иванова</string>
@@ -130,10 +176,25 @@ QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</s
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>250</y>
-     <width>91</width>
+     <y>230</y>
+     <width>141</width>
      <height>28</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel{
+background: rgb(0, 0, 0, 0); 
+font-family: serif, Georgia;
+font-size: 28px;
+letter-spacing: 2px;
+word-spacing: 2px;
+color: #A8491D;
+font-weight: 700;
+text-decoration: underline rgb(68, 68, 68);
+font-style: normal;
+font-variant: small-caps;
+text-transform: none;
+}</string>
    </property>
    <property name="text">
     <string>СНИЛС</string>
@@ -150,10 +211,16 @@ QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</s
    </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
+     <pointsize>18</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit:hover{
+border: 2px solid #CB5721;
+border-radius: 22px;
+}</string>
    </property>
    <property name="text">
     <string>163-648-564 96</string>

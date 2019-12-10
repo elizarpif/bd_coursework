@@ -12,14 +12,15 @@ class DbConfig(YamlDataClassConfig):
     dbname: str = None
     dbrole: str = None
     dbpassword: str = None
-    db_worker: str = None
-    db_worker_password: str = None
+    worker: str = None
+    worker_password: str = None
 @dataclass
 class Ui(YamlDataClassConfig):
     search: str = None
     main: str = None
-    connect: str = None
+    login: str = None
     infoAbout: str = None
+    notModerator: str = None
 @dataclass
 class Images(YamlDataClassConfig):
     icon: str = None

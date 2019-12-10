@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>435</width>
-    <height>488</height>
+    <height>422</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Войти</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget{
@@ -22,14 +22,14 @@ background-image: url(background.jpg);
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>51</y>
+     <y>40</y>
      <width>391</width>
-     <height>351</height>
+     <height>249</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
-     <number>10</number>
+     <number>0</number>
     </property>
     <property name="leftMargin">
      <number>10</number>
@@ -41,69 +41,69 @@ background-image: url(background.jpg);
      <number>10</number>
     </property>
     <property name="bottomMargin">
-     <number>0</number>
+     <number>10</number>
     </property>
     <item>
-     <widget class="QLabel" name="lb_host">
+     <widget class="QLabel" name="lb_login">
+      <property name="font">
+       <font>
+        <pointsize>25</pointsize>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true">QLabel{
-border-color: #F77A52;
+background-color: Transparent;
+background: rgb(0, 0, 0, 1); 
 }</string>
       </property>
       <property name="text">
-       <string>host</string>
+       <string>Login</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="ln_host">
-      <property name="text">
-       <string>localhost</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="lb_db">
-      <property name="text">
-       <string>database</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="ln_db">
-      <property name="styleSheet">
-       <string notr="true"/>
+     <widget class="QLineEdit" name="ln_login">
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
       </property>
       <property name="text">
-       <string>pension_db</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="lb_role">
-      <property name="text">
-       <string>role</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="ln_role">
-      <property name="text">
-       <string>pension_db</string>
+       <string>worker</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="lb_password">
+      <property name="font">
+       <font>
+        <pointsize>25</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+background-color: Transparent;
+background: rgb(0, 0, 0, 1); 
+}</string>
+      </property>
       <property name="text">
-       <string>password</string>
+       <string>Passoword</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLineEdit" name="ln_password">
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
-       <string>pension_db</string>
+       <string>worker</string>
       </property>
       <property name="echoMode">
        <enum>QLineEdit::Password</enum>
@@ -115,8 +115,8 @@ border-color: #F77A52;
   <widget class="QPushButton" name="accepted_btn">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>420</y>
+     <x>30</x>
+     <y>320</y>
      <width>144</width>
      <height>51</height>
     </rect>
@@ -146,7 +146,7 @@ QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</s
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>420</y>
+     <y>320</y>
      <width>191</width>
      <height>51</height>
     </rect>

@@ -49,18 +49,27 @@ background-image: url(:/background.jpg);
     </property>
     <property name="font">
      <font>
+      <family>serif,Georgia</family>
       <pointsize>-1</pointsize>
+      <weight>87</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <underline>true</underline>
      </font>
     </property>
     <property name="styleSheet">
      <string notr="true">QLabel{
-width: 100%;
-  padding: 0;
-  line-height: 42px;
-  background: #4a90e2;
-  border-width: 0;
-  color: white;
-  font-size: 20px;
+background: rgb(0, 0, 0, 0); 
+font-family: serif, Georgia;
+font-size: 28px;
+letter-spacing: 2px;
+word-spacing: 2px;
+color: #A8491D;
+font-weight: 700;
+text-decoration: underline rgb(68, 68, 68);
+font-style: normal;
+font-variant: small-caps;
+text-transform: none;
 }</string>
     </property>
     <property name="text">
@@ -78,13 +87,26 @@ width: 100%;
     </property>
     <property name="font">
      <font>
-      <weight>50</weight>
-      <bold>false</bold>
+      <family>serif,Georgia</family>
+      <pointsize>-1</pointsize>
+      <weight>87</weight>
+      <italic>false</italic>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
      <string notr="true">QLabel{
-border-color: #F77A52;
+background: rgb(0, 0, 0, 0); 
+font-family: serif, Georgia;
+font-size: 28px;
+letter-spacing: 2px;
+word-spacing: 2px;
+color: #A8491D;
+font-weight: 700;
+text-decoration: rgb(68, 68, 68);
+font-style: normal;
+font-variant: small-caps;
+text-transform: none;
 }</string>
     </property>
     <property name="text">
@@ -102,7 +124,8 @@ border-color: #F77A52;
     </property>
     <property name="styleSheet">
      <string notr="true">QTableView{
-background-image: url(background.jpg);
+background-color: linear-gradient(to bottom, #C2EEF0 0%, #7CCBDE 50%, #1C6EA4 100%);
+transparency: 0.4;
 }</string>
     </property>
     <attribute name="horizontalHeaderDefaultSectionSize">
@@ -120,7 +143,9 @@ background-image: url(background.jpg);
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
+  display: inline-block;
   color: white;
+  text-decoration: none;
   padding: .2em 2em;
   outline: none;
   border-width: 2px 0;
@@ -128,9 +153,14 @@ background-image: url(background.jpg);
   border-color: #FDBE33 #000 #D77206;
   border-radius: 6px;
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: 0.2s;
 } 
-QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
-QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
+QPushButton:active { 
+background: linear-gradient(#f59500, #f5ae00) #f59500; 
+}
+QPushButton:active:hover{ 
+background: linear-gradient(#f5ae00, #f59500) #f5ae00; 
+}</string>
     </property>
     <property name="text">
      <string>Перерасчет</string>
@@ -147,7 +177,9 @@ QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</s
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
+  display: inline-block;
   color: white;
+  text-decoration: none;
   padding: .2em 2em;
   outline: none;
   border-width: 2px 0;
@@ -155,9 +187,14 @@ QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</s
   border-color: #FDBE33 #000 #D77206;
   border-radius: 6px;
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: 0.2s;
 } 
-QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
-QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
+QPushButton:active { 
+background: linear-gradient(#f59500, #f5ae00) #f59500; 
+}
+QPushButton:active:hover{ 
+background: linear-gradient(#f5ae00, #f59500) #f5ae00; 
+}</string>
     </property>
     <property name="text">
      <string>Опыт работы</string>
@@ -174,7 +211,9 @@ QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</s
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
+  display: inline-block;
   color: white;
+  text-decoration: none;
   padding: .2em 2em;
   outline: none;
   border-width: 2px 0;
@@ -182,9 +221,14 @@ QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</s
   border-color: #FDBE33 #000 #D77206;
   border-radius: 6px;
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: 0.2s;
 } 
-QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
-QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
+QPushButton:active { 
+background: linear-gradient(#f59500, #f5ae00) #f59500; 
+}
+QPushButton:active:hover{ 
+background: linear-gradient(#f5ae00, #f59500) #f5ae00; 
+}</string>
     </property>
     <property name="text">
      <string>Личная инф</string>

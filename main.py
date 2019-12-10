@@ -3,6 +3,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import *
 from config.config import Config
 from PyQt5 import uic, QtWidgets, QtSql
+
 CONFIG: Config = Config()
 
 
@@ -18,22 +19,35 @@ class Search(QDialog):
     def Accepted(self):
         self.accept()
 
+class NotModerator(QDialog):
+    def __init__(self, conf):
+        super(NotModerator, self).__init__()
+        self.ui = uic.loadUi(conf.ui.notModerator, self)
+        self.accepted_btn.clicked.connect(self.Accepted)
 
-# class Connect(QDialog):
-#     def __init__(self):
-#         super(Connect,self).__init__()
-#         self.ui = uic.loadUi("connect.ui", self)
-#         self.setWindowTitle("Connect to database")
-#         self.accepted_btn.clicked.connect(self.Accepted)
-#         self.canceled_btn.clicked.connect(self.Cancel)
-#
-#     def getDbParams(self):
-#         return self.ln_db.text(), self.ln_host.text(), self.ln_role.text(), self.ln_password.text()
-#
-#     def Accepted(self):
-#         self.accept()
-#     def Cancel(self):
-#         self.close()
+    def Accepted(self):
+        self.accept()
+
+class Login(QDialog):
+    def __init__(self, conf: CONFIG):
+        super(Login, self).__init__()
+        self.ui = uic.loadUi(conf.ui.login, self)
+        self.accepted_btn.clicked.connect(self.Accepted)
+        self.canceled_btn.clicked.connect(self.Cancel)
+
+    def getParams(self):
+        return self.login, self.password
+
+    def Accepted(self):
+        self.login = self.ln_login.text()
+        self.password = self.ln_password.text()
+        self.accept()
+
+    def Cancel(self):
+        self.login = ""
+        self.password = ""
+        self.close()
+
 
 class Client(QMainWindow):
     def LoadConfigParams(self):
@@ -43,6 +57,9 @@ class Client(QMainWindow):
         self.dbrole = self.Config.db.dbrole
         self.dbname = self.Config.db.dbname
         self.dbpass = self.Config.db.dbpassword
+
+        self.dbworker = self.Config.db.worker
+        self.dbworker_password = self.Config.db.worker_password
 
         self.ui = self.Config.ui
 
@@ -56,20 +73,53 @@ class Client(QMainWindow):
         self.setWindowIcon(QIcon(self.Config.images.icon))
         self.ui = uic.loadUi(self.Config.ui.main, self)
 
-        # self.connect_btn.clicked.connect(self.Connect)
+        self.login_btn.clicked.connect(self.Login)
+        self.Connect()
         self.search_btn.clicked.connect(self.Search)
 
         self.Info = InfoRetiree(self.Config)
         # self.combo.currentTextChanged.connect(self.comboChange)
 
-# добавить информацию о выллатах, типах пенсий
+    def Login(self):
+        login = Login(self.Config)
+        login.show()
+        if (login.exec() == QDialog.Accepted):
+            self.role, self.password = login.getParams()
+            curUser = self.db.userName()
+            curPass = self.db.password()
+            self.db.setUserName(self.dbworker)
+            self.db.setPassword(self.dbworker_password)
+            if (self.db.open()):
+                print("db open with worker options")
+                query = "select * from moderator('{}','{}');".format(self.role, self.password)
+                sql = QtSql.QSqlQuery()
+                res = sql.exec(query)
+                while sql.next():
+                    tf = sql.value("moderator")
+                    if tf:
+                        return
+                # диалог
+                print(tf)
+                mod = NotModerator(self.Config)
+                mod.show()
+
+            print(self.db.lastError())
+            print("open db with default params")
+            self.db.setUserName(curUser)
+            self.db.setPassword(curPass)
+            if not(self.db.open()):
+                print(self.db.lastError())
+
+        #if (login.exec() == QDialog.Rejected):
+
+
+    # добавить информацию о выллатах, типах пенсий
     def Search(self):
         src = Search(self.Config)
         src.show()
         if (src.exec() == QDialog.Rejected):
             return
         name, surname, snils = src.getRetireeParams()
-        self.Connect()
         if not self.db.open():
             print(self.db.databaseName())
             print("db not opened")
@@ -78,9 +128,7 @@ class Client(QMainWindow):
         self.Info.setDb(self.db)
         self.Info.setInfo(name, surname, snils)
         self.Info.InitInfo()
-        self.setVisible(False)
-
-        # self.colcount = rec.count()
+        #self.setVisible(False)
 
     def Connect(self):
 
@@ -125,7 +173,7 @@ class InfoRetiree(QMainWindow):
             self.name = sql.value("name")
             self.surname = sql.value("surname")
             self.patronymic = sql.value("patronymic")
-        self.fio_info_lb.setText(self.surname+" "+self.name+" "+self.patronymic)
+        self.fio_info_lb.setText(self.surname + " " + self.name + " " + self.patronymic)
         self.InfoRetiree()
 
     def InfoRetiree(self):

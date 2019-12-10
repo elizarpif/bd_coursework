@@ -47,7 +47,9 @@ background-image:url(background.jpg);
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
+  display: inline-block;
   color: white;
+  text-decoration: none;
   padding: .2em 2em;
   outline: none;
   border-width: 2px 0;
@@ -55,10 +57,14 @@ background-image:url(background.jpg);
   border-color: #FDBE33 #000 #D77206;
   border-radius: 6px;
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: 0.2s;
 } 
-QPushButton:focus { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
-QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
-QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
+QPushButton:active:focus { 
+background: linear-gradient(#f59500, #f5ae00) #f59500; 
+}
+QPushButton:active:hover{ 
+background: linear-gradient(#f5ae00, #f59500) #f5ae00; 
+}</string>
     </property>
     <property name="text">
      <string>Войти</string>
@@ -75,16 +81,24 @@ QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</s
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
+  display: inline-block;
   color: white;
+  text-decoration: none;
   padding: .2em 2em;
+  outline: none;
   border-width: 2px 0;
   border-style: solid none;
   border-color: #FDBE33 #000 #D77206;
   border-radius: 6px;
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: 0.2s;
 } 
-QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
-QPushButton:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
+QPushButton:active { 
+background: linear-gradient(#f59500, #f5ae00) #f59500; 
+}
+QPushButton:active:hover{ 
+background: linear-gradient(#f5ae00, #f59500) #f5ae00; 
+}</string>
     </property>
     <property name="text">
      <string>Поиск</string>
@@ -117,6 +131,7 @@ font-weight: normal;
 font-style: normal;
 font-variant: normal;
 text-transform: none;
+background: rgb(0, 0, 0, 0); 
 }</string>
     </property>
     <property name="readOnly">

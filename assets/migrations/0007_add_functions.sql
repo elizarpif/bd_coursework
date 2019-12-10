@@ -4,6 +4,11 @@
 -- перерасчет
 -- DROP ROLE IF EXISTS pension_worker;
 CREATE ROLE pension_worker WITH
+    LOGIN
+    NOCREATEDB
+    NOINHERIT
+    NOCREATEROLE
+    NOREPLICATION
     ENCRYPTED PASSWORD 'pension_worker';
 GRANT select, update, insert on all tables in schema public to pension_worker;
 grant select on all tables in schema public to pension_db;
@@ -83,7 +88,9 @@ AS
 $$
 BEGIN
     return query
-        select w.work_experience, w.insurance_payment, w.place_of_work from work_experience AS w;
+        select w.work_experience, w.insurance_payment, w.place_of_work
+        from work_experience AS w
+        where w.id_retirees = (select id from retirees where insurance_number_of_individual_personal_account = snils);
 end;
 $$ language plpgsql;
 
