@@ -124,8 +124,7 @@ text-transform: none;
     </property>
     <property name="styleSheet">
      <string notr="true">QTableView{
-background-color: linear-gradient(to bottom, #C2EEF0 0%, #7CCBDE 50%, #1C6EA4 100%);
-transparency: 0.4;
+background-image: url(background.jpg);
 }</string>
     </property>
     <attribute name="horizontalHeaderDefaultSectionSize">
