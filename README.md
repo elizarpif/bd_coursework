@@ -18,6 +18,8 @@
 Добавить/удалить место работы
 ![Иллюстрация к проекту](https://github.com/elizarpif/bd_coursework/blob/master/assets/scrinshotes/moder_place.png)
 
+![Иллюстрация к проекту](https://github.com/elizarpif/bd_coursework/blob/master/assets/scrinshotes/moder_exp.png)
+
 Добавить расчет для следующего месяца / удалить последний расчет
 ![Иллюстрация к проекту](https://github.com/elizarpif/bd_coursework/blob/master/assets/scrinshotes/moder_summas.png)
 
