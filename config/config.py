@@ -21,6 +21,10 @@ class Ui(YamlDataClassConfig):
     login: str = None
     infoAbout: str = None
     notModerator: str = None
+    moderatorInfo: str = None
+    addPension: str = None
+    addWork: str = None
+    updateRetireeInfo: str = None
 @dataclass
 class Images(YamlDataClassConfig):
     icon: str = None

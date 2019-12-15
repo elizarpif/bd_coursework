@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-beta1" last-position="0,4" last-zoom="1" max-obj-count="8"
+<dbmodel pgmodeler-ver="0.9.2-beta1" last-position="0,0" last-zoom="1" max-obj-count="9"
 	 default-schema="public" default-owner="pension_dba">
 <role name="pension_dba"
       superuser="true"
@@ -63,22 +63,25 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="pensions" layer="0" collapse-mode="2" max-obj-count="4">
+<table name="pensions" layer="0" collapse-mode="2" max-obj-count="6">
 	<schema name="public"/>
 	<role name="pension_dba"/>
 	<comment><![CDATA[пенсии]]></comment>
-	<position x="340" y="100"/>
+	<position x="240" y="80"/>
 	<column name="id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
 	<column name="name">
-		<type name="text" length="0"/>
+		<type name="varchar" length="128"/>
 	</column>
 	<column name="rus_label">
-		<type name="text" length="2"/>
+		<type name="varchar" length="128"/>
 	</column>
-	<column name="id_pension_type" not-null="true">
+	<column name="pension_type_id" not-null="true">
 		<type name="uuid" length="0"/>
+	</column>
+	<column name="standart_payment">
+		<type name="money" length="0"/>
 	</column>
 	<constraint name="pensions_pkey" type="pk-constr" table="public.pensions">
 		<columns names="id" ref-type="src-columns"/>
@@ -92,10 +95,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
-	<column name="id_pension" not-null="true">
+	<column name="pension_id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
-	<column name="id_retirees" not-null="true">
+	<column name="retiree_id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
 	<constraint name="retirees_pensions_pkey" type="pk-constr" table="public.retirees_pensions">
@@ -103,84 +106,56 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="work_experience" layer="0" collapse-mode="2" max-obj-count="6">
+<table name="work_experience" layer="0" collapse-mode="2" max-obj-count="7">
 	<schema name="public"/>
 	<role name="pension_dba"/>
 	<position x="1000" y="680"/>
 	<column name="work_experience">
 		<type name="smallint" length="0"/>
 	</column>
-	<column name="insurance_payment">
+	<column name="insurance_payment" default-value="0">
 		<type name="money" length="0"/>
 		<comment><![CDATA[страховой взнос]]></comment>
 	</column>
 	<column name="id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
-	<column name="id_retirees" not-null="true">
+	<column name="retiree_id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
 	<column name="place_of_work">
 		<type name="varchar" length="128"/>
 		<comment><![CDATA[Место работы]]></comment>
 	</column>
+	<column name="coeff">
+		<type name="float" length="0"/>
+	</column>
 	<constraint name="work_experience_pkey" type="pk-constr" table="public.work_experience">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<table name="result_summas" layer="0" collapse-mode="2" max-obj-count="19">
+<table name="result_summas" layer="0" collapse-mode="2" max-obj-count="7">
 	<schema name="public"/>
 	<role name="pension_dba"/>
-	<position x="80" y="540"/>
-	<column name="january" not-null="true" default-value="0">
-		<type name="money" length="0"/>
-	</column>
-	<column name="february" not-null="true" default-value="0">
-		<type name="money" length="0"/>
-	</column>
-	<column name="march" not-null="true" default-value="0">
-		<type name="money" length="0"/>
-	</column>
-	<column name="april" not-null="true" default-value="0">
-		<type name="money" length="0"/>
-	</column>
-	<column name="may" not-null="true" default-value="0">
-		<type name="money" length="0"/>
-	</column>
-	<column name="june" not-null="true" default-value="0">
-		<type name="money" length="0"/>
-	</column>
-	<column name="july" not-null="true" default-value="0">
-		<type name="money" length="0"/>
-	</column>
-	<column name="august" not-null="true" default-value="0">
-		<type name="money" length="0"/>
-	</column>
-	<column name="september" not-null="true" default-value="0">
-		<type name="money" length="0"/>
-	</column>
-	<column name="october" not-null="true" default-value="0">
-		<type name="money" length="0"/>
-	</column>
-	<column name="november" not-null="true" default-value="0">
-		<type name="money" length="0"/>
-	</column>
-	<column name="december" not-null="true" default-value="0">
-		<type name="money" length="0"/>
-	</column>
-	<column name="result" not-null="true" default-value="0">
-		<type name="money" length="0"/>
-		<comment><![CDATA[итог с начала года]]></comment>
-	</column>
+	<position x="40" y="540"/>
 	<column name="id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
-	<column name="id_retirees" not-null="true">
+	<column name="retiree_id" not-null="true">
 		<type name="uuid" length="0"/>
 	</column>
 	<column name="year">
 		<type name="bigint" length="0"/>
+	</column>
+	<column name="month_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="result" default-value="0">
+		<type name="money" length="0"/>
+	</column>
+	<column name="month_payment" default-value="0">
+		<type name="money" length="0"/>
 	</column>
 	<constraint name="result_summas_pkey" type="pk-constr" table="public.result_summas">
 		<columns names="id" ref-type="src-columns"/>
@@ -198,7 +173,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="varchar" length="30"/>
 	</column>
 	<column name="rus_label">
-		<type name="text" length="0"/>
+		<type name="varchar" length="128"/>
 	</column>
 	<constraint name="pensions_type_pkey" type="pk-constr" table="public.pensions_type">
 		<columns names="id" ref-type="src-columns"/>
@@ -225,35 +200,62 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<constraint name="moderator_pkey" type="pk-constr" table="moderator.users">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
+	<constraint name="login_ukey" type="uq-constr" table="moderator.users">
+		<columns names="login" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="months" layer="0" collapse-mode="2" max-obj-count="3">
+	<schema name="public"/>
+	<role name="pension_dba"/>
+	<position x="660" y="1020"/>
+	<column name="id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="number">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="rus_label">
+		<type name="varchar" length="15"/>
+	</column>
+	<constraint name="month_pkey" type="pk-constr" table="public.months">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
 </table>
 
 <constraint name="pension_type_fkey" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.pensions_type" table="public.pensions">
-	<columns names="id_pension_type" ref-type="src-columns"/>
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="public.pensions_type" table="public.pensions">
+	<columns names="pension_type_id" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="pensions_fkey" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.pensions" table="public.retirees_pensions">
-	<columns names="id_pension" ref-type="src-columns"/>
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="public.pensions" table="public.retirees_pensions">
+	<columns names="pension_id" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="retirees_fkey" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.retirees" table="public.retirees_pensions">
-	<columns names="id_retirees" ref-type="src-columns"/>
-	<columns names="id" ref-type="dst-columns"/>
-</constraint>
-
-<constraint name="retiress_fkey" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.retirees" table="public.work_experience">
-	<columns names="id_retirees" ref-type="src-columns"/>
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="public.retirees" table="public.retirees_pensions">
+	<columns names="retiree_id" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="retirees_fkey" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.retirees" table="public.result_summas">
-	<columns names="id_retirees" ref-type="src-columns"/>
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="public.retirees" table="public.work_experience">
+	<columns names="retiree_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="retirees_fkey" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="public.retirees" table="public.result_summas">
+	<columns names="retiree_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="month_fkey" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="public.months" table="public.result_summas">
+	<columns names="month_id" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
@@ -272,7 +274,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_work_experience_retirees" type="relfk" layer="0"
 	 custom-color="#c492d8"
 	 src-table="public.work_experience"
-	 dst-table="public.retirees" reference-fk="retiress_fkey"
+	 dst-table="public.retirees" reference-fk="retirees_fkey"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_pensions_pensions_type" type="relfk" layer="0"
@@ -287,4 +289,19 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.retirees" reference-fk="retirees_fkey"
 	 src-required="false" dst-required="false"/>
 
+<relationship name="rel_result_summas_months" type="relfk" layer="0"
+	 src-table="public.result_summas"
+	 dst-table="public.months" reference-fk="month_fkey"
+	 src-required="false" dst-required="false"/>
+
+<permission>
+	<object name="moderator" type="schema"/>
+	<roles names="pension_worker"/>
+	<privileges usage="true"/>
+</permission>
+<permission>
+	<object name="moderator.users" type="table"/>
+	<roles names="pension_worker"/>
+	<privileges select="true"/>
+</permission>
 </dbmodel>
