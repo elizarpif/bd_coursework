@@ -14,6 +14,7 @@ BEGIN
         SET result=NEW.month_payment + (select result
                                         from result_summas
                                         where year = NEW.year
+                                          and retiree_id=new.retiree_id
                                           AND month_id = (select id
                                                           from months
                                                           where number = ((select number from months where id = NEW.month_id) - 1)))
@@ -23,7 +24,8 @@ BEGIN
         if (select number from months where id=new.month_id limit 1)=1 then
             update result_summas
             set result=new.month_payment
-            where year=new.year;
+            where year=new.year
+            and retiree_id=new.retiree_id;
             RETURN NEW;
         end if;
          end if;

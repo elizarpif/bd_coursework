@@ -173,7 +173,7 @@ QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
 QPushButton:pressed { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
     </property>
     <property name="text">
-     <string>Перерасчет</string>
+     <string>Итоговые суммы</string>
     </property>
    </widget>
    <widget class="QPushButton" name="work_experience_btn">
@@ -233,7 +233,7 @@ QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
 QPushButton:pressed { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
     </property>
     <property name="text">
-     <string>Личная инф</string>
+     <string>Личная информация</string>
     </property>
    </widget>
   </widget>
