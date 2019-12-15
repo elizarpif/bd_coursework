@@ -25,6 +25,7 @@ class Ui(YamlDataClassConfig):
     addPension: str = None
     addWork: str = None
     updateRetireeInfo: str = None
+    addMonthPayment: str = None
 @dataclass
 class Images(YamlDataClassConfig):
     icon: str = None

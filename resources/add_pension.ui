@@ -130,27 +130,27 @@ text-transform: none;
    </property>
    <item>
     <property name="text">
-     <string>По инвалидности</string>
+     <string>по инвалидности</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>По старости</string>
+     <string>по старости</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Участники боевых действий</string>
+     <string>участники боевых действий</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Случай потери кормильца</string>
+     <string>случай потери кормильца (СПК)</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Ежемесячные денежные выплаты</string>
+     <string>ежемесячные денежные выплаты (ЕДВ)</string>
     </property>
    </item>
   </widget>

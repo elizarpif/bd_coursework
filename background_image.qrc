@@ -2,5 +2,7 @@
   <qresource>
     <file>background.jpg</file>
     <file>background_light.png</file>
+    <file>update(1).png</file>
+    <file>update.png</file>
   </qresource>
 </RCC>

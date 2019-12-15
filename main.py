@@ -26,37 +26,62 @@ class ChangeInfoRetiree(QDialog):
 
     def Accepted(self):
         self.accept()
+
+    def Cancel(self):
+        self.close()
+
+
+class AddMonthPayment(QDialog):
+    def __init__(self, conf):
+        super(AddMonthPayment, self).__init__()
+        self.ui = uic.loadUi(conf.ui.addMonthPayment, self)
+        self.accepted_btn.clicked.connect(self.Accepted)
+        self.canceled_btn.clicked.connect(self.Cancel)
+
+    def getRetireeParams(self):
+        return self.month_box.value(), self.year_box.value()
+
+    def Accepted(self):
+        self.accept()
+
     def Cancel(self):
         self.close()
 
 
 class AddWorkRetiree(QDialog):
-    def __init__(self, conf):
+    def __init__(self, conf, deleted):
         super(AddWorkRetiree, self).__init__()
         self.ui = uic.loadUi(conf.ui.addWork, self)
         self.accepted_btn.clicked.connect(self.Accepted)
         self.canceled_btn.clicked.connect(self.Cancel)
+        if deleted:
+            self.setWindowTitle('Укажите удаляемые данные')
 
     def getRetireeParams(self):
         return self.ln_place.text(), self.ln_experience.text(), self.ln_payment.text()
 
     def Accepted(self):
         self.accept()
+
     def Cancel(self):
         self.close()
 
+
 class AddPension(QDialog):
-    def __init__(self, conf):
+    def __init__(self, conf, deleted):
         super(AddPension, self).__init__()
         self.ui = uic.loadUi(conf.ui.addPension, self)
         self.accepted_btn.clicked.connect(self.Accepted)
         self.canceled_btn.clicked.connect(self.Cancel)
+        if deleted:
+            self.setWindowTitle('укажите удаляемые данные')
 
     def getRetireeParams(self):
         return self.combo.currentText()
 
     def Accepted(self):
         self.accept()
+
     def Cancel(self):
         self.close()
 
@@ -79,13 +104,9 @@ class NotModerator(QDialog):
         super(NotModerator, self).__init__()
         self.ui = uic.loadUi(conf.ui.notModerator, self)
         self.accepted_btn.clicked.connect(self.Accepted)
-        self.canceled_btn.clicked.connect(self.Cancel)
 
     def Accepted(self):
         self.accept()
-    def Cancel(self):
-        self.close()
-
 
 class Login(QDialog):
     def __init__(self, conf: CONFIG):
@@ -131,13 +152,25 @@ class Client(QMainWindow):
         self.ui = uic.loadUi(self.Config.ui.main, self)
 
         self.login_btn.clicked.connect(self.Login)
+        self.unlogin_btn.setEnabled(False)
+        self.unlogin_btn.clicked.connect(self.UnLogin)
         self.Connect()
         self.search_btn.clicked.connect(self.Search)
-
+        self.IsWorker = False
         self.Info = InfoRetiree(self.Config)
         self.ModerInfoRetiree = ModerInfoRetiree(self.Config)
         # self.combo.currentTextChanged.connect(self.comboChange)
 
+    def UnLogin(self):
+        self.unlogin_btn.setEnabled(False)
+        self.IsWorker = False
+        print("open db with default params")
+        self.db.setUserName(self.dbrole)
+        self.db.setPassword(self.dbpass)
+        if not (self.db.open()):
+            print(self.db.lastError())
+        if (self.ModerInfoRetiree.isVisible()):
+            self.ModerInfoRetiree.close()
     def Login(self):
         login = Login(self.Config)
         login.show()
@@ -156,12 +189,15 @@ class Client(QMainWindow):
                 while sql.next():
                     tf = sql.value("moderator")
                     if tf:
+                        self.unlogin_btn.setEnabled(True)
+                        if (self.Info.isVisible()):
+                            self.Info.close()
                         return
                 # диалог
                 print(tf)
                 mod = NotModerator(self.Config)
                 mod.show()
-
+            self.unlogin_btn.setEnabled(False)
             print(self.db.lastError())
             self.IsWorker = False
             print("open db with default params")
@@ -220,14 +256,69 @@ class ModerInfoRetiree(QMainWindow):
         self.combo.currentTextChanged.connect(self.comboChange)
         self.add_btn.clicked.connect(self.changeInfo)
         self.update_btn.clicked.connect(self.updateTable)
+        self.delete_btn.clicked.connect(self.deleteChoose)
+        self.delete_btn.setVisible(False)
+        self.combo.setCurrentIndex(0)
+
 
     def changeInfo(self):
-        if (self.combo.currentText()=='Личная информация'):
+        if (self.combo.currentText() == 'Личная информация'):
             self.changeRetireeInfo()
         if (self.combo.currentText() == 'Опыт работы'):
             self.addRetireeWork()
         if (self.combo.currentText() == 'Пенсии'):
             self.addRetireePension()
+        if (self.combo.currentText() == 'Итоговые суммы'):
+            self.addMonthPayment()
+
+    def addMonthPayment(self):
+
+        ### получить последний месяц и год
+        query = "select * from get_year('{}')".format(self.snils)
+        sql = QtSql.QSqlQuery()
+        res = sql.exec(query)
+        while sql.next():
+            self.year = sql.value("get_year")
+            if (self.year == 0):
+                self.year = 2019
+            print(self.year)
+        query = "select * from get_month('{}', {})".format(self.snils, self.year)
+        sql = QtSql.QSqlQuery()
+        sql.exec(query)
+        while sql.next():
+            self.month = sql.value("get_month")
+            print(self.month)
+        if (self.month == 12):
+            self.month = 0
+            self.year = self.year + 1
+        query = "call addMonthPayment('{}',{},{});".format(self.snils, self.month + 1, self.year)
+        print(query)
+        sql = QtSql.QSqlQuery()
+        res = sql.exec(query)
+        print(res)
+        self.updateTable()
+        print(sql.lastError().text())
+
+    def deleteMonthPayment(self):
+        ### получить последний месяц и год
+        query = "select * from get_year('{}')".format(self.snils)
+        sql = QtSql.QSqlQuery()
+        res = sql.exec(query)
+        while sql.next():
+            self.year = sql.value("get_year")
+
+        query = "select * from get_month('{}', {})".format(self.snils, self.year)
+        sql = QtSql.QSqlQuery()
+        sql.exec(query)
+        while sql.next():
+            self.month = sql.value("get_month")
+        query = "call delete_month('{}', {}, {})".format(self.snils, self.month, self.year)
+        print(query)
+        sql = QtSql.QSqlQuery()
+        res = sql.exec(query)
+        print(res)
+        print(sql.lastError().text())
+        self.updateTable()
 
 
     def changeRetireeInfo(self):
@@ -235,9 +326,9 @@ class ModerInfoRetiree(QMainWindow):
         newInfo.show()
         if (newInfo.exec() == QDialog.Accepted):
             surname, name, patronymic, snils, address = newInfo.getRetireeParams()
-            print('pfrs ',newInfo.getRetireeParams())
-            query = "call  changeRetireeInfo('{}','{}','{}', '{}','{}', '{}');".format(surname, name, patronymic, snils,
-                                                                                       address, self.snils)
+            print('pfrs ', newInfo.getRetireeParams())
+            query = "call changeRetireeInfo('{}','{}','{}', '{}','{}', '{}');".format(surname, name, patronymic, snils,
+                                                                                      address, self.snils)
             sql = QtSql.QSqlQuery(query)
             sql.exec()
             self.snils = snils
@@ -260,47 +351,94 @@ class ModerInfoRetiree(QMainWindow):
         self.table.setModel(sql)
 
     def addRetireeWork(self):
-        newWork = AddWorkRetiree(self.Config)
+        newWork = AddWorkRetiree(self.Config, False)
         newWork.show()
         if (newWork.exec() == QDialog.Accepted):
-           place, exp, payment  = newWork.getRetireeParams()
-           query = "call addWork({},'{}','{}', {},'{}');".format(exp, payment, place, 6.6, self.snils)
-           print(query)
-           sql = QtSql.QSqlQuery()
-           res = sql.exec(query)
-           self.updateTable()
+            place, exp, payment = newWork.getRetireeParams()
+            query = "call addWork({},'{}','{}', {},'{}');".format(exp, payment, place, 6.6, self.snils)
+            print(query)
+            sql = QtSql.QSqlQuery()
+            res = sql.exec(query)
+            self.updateTable()
+
+    def deleteChoose(self):
+        #if (self.combo.currentText() == 'Личная информация'):
+           # self.changeRetireeInfo()
+        if (self.combo.currentText() == 'Опыт работы'):
+            self.deleteRetireeWork()
+        if (self.combo.currentText() == 'Пенсии'):
+            self.deleteRetireePension()
+        if (self.combo.currentText() == 'Итоговые суммы'):
+            self.deleteMonthPayment()
+
+    def deleteRetireeWork(self):
+        newWork = AddWorkRetiree(self.Config, True)
+        newWork.show()
+        if (newWork.exec() == QDialog.Accepted):
+            place, exp, payment = newWork.getRetireeParams()
+            query = "call delete_work('{}','{}',{}, {});".format(self.snils, place, exp, payment)
+            print(query)
+            sql = QtSql.QSqlQuery()
+            res = sql.exec(query)
+            self.updateTable()
+            print(sql.lastError().text())
 
     def addRetireePension(self):
-        newPension = AddPension(self.Config)
+        newPension = AddPension(self.Config, False)
         newPension.show()
         if (newPension.exec() == QDialog.Accepted):
-           pension_type  = newPension.getRetireeParams()
-           query = "select * from isExistPension('{}','{}')".format(pension_type, self.snils)
-           print(query)
-           sql = QtSql.QSqlQuery()
-           res = sql.exec(query)
-           while sql.next():
-               tf = sql.value("isexistpension")
-               if not tf:
-                   query = "call addPension('{}','{}');".format(pension_type, self.snils)
-                   sql = QtSql.QSqlQuery(query)
-                   print(sql.lastError())
-                   self.updateTable()
+            pension_type = newPension.getRetireeParams()
+            query = "select * from isExistPension('{}','{}')".format(pension_type, self.snils)
+            print(query)
+            sql = QtSql.QSqlQuery()
+            res = sql.exec(query)
+            while sql.next():
+                tf = sql.value("isexistpension")
+                if not tf:
+                    query = "call addPension('{}','{}');".format(pension_type, self.snils)
+                    print(query)
+                    sql = QtSql.QSqlQuery(query)
+                    print(sql.lastError().text())
+                    self.updateTable()
 
+    def deleteRetireePension(self):
+        newPension = AddPension(self.Config, True)
+        newPension.show()
+        if (newPension.exec() == QDialog.Accepted):
+            pension_type = newPension.getRetireeParams()
+            query = "select * from isExistPension('{}','{}')".format(pension_type, self.snils)
+            print(query)
+            sql = QtSql.QSqlQuery()
+            res = sql.exec(query)
+            while sql.next():
+                tf = sql.value("isexistpension")
+                if not tf:
+                    query = "call delete_pension('{}','{}');".format(self.snils, pension_type)
+                    print(query)
+                    sql = QtSql.QSqlQuery(query)
+                    print(sql.lastError().text())
+                    self.updateTable()
 
     def comboChange(self, value):
         if (value == "Личная информация"):
+            self.add_btn.setText("Изменить")
+            self.delete_btn.setVisible(False)
             self.InfoAboutRetiree()
         if (value == "Опыт работы"):
+            self.add_btn.setText("Добавить")
+            self.delete_btn.setVisible(True)
             self.InfoWorkExperience()
         if (value == "Итоговые суммы"):
+            self.add_btn.setText("Добавить")
+            self.delete_btn.setVisible(True)
             self.InfoResultSummas()
         if (value == "Пенсии"):
+            self.add_btn.setText("Добавить")
+            self.delete_btn.setVisible(True)
             self.InfoPension()
 
     def updateTable(self):
         self.comboChange(self.combo.currentText())
-
 
     def InitInfo(self):
         query = "select * from info_retiree('{}');".format(self.snils)
@@ -311,6 +449,7 @@ class ModerInfoRetiree(QMainWindow):
             self.patronymic = sql.value("patronymic")
             self.address = sql.value("address")
         self.fio_info_lb.setText(self.surname + " " + self.name + " " + self.patronymic)
+        self.combo.setCurrentIndex(0)
         self.InfoAboutRetiree()
 
     def InfoAboutRetiree(self):
@@ -329,8 +468,12 @@ class ModerInfoRetiree(QMainWindow):
     def setDb(self, db):
         self.db = db
 
-    def setInfo(self,snils):
+    def setInfo(self, snils):
         self.snils = snils
+        self.surname=''
+        self.name=''
+        self.patronymic=''
+        self.address=''
 
     def InfoResultSummas(self):
         sql = QtSql.QSqlRelationalTableModel()

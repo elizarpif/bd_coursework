@@ -123,15 +123,56 @@ text-transform: none;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">QTableView{
-background-image: url(background.jpg);
+     <string notr="true">QTableView {
+    selection-background-color: linear-gradient(#F3AE0F, #E38916) #E38916;
+	background-color: #ebf0eb;
+}
+QTableView::item:focus
+{
+selection-color: white;
+   selection-background-color: linear-gradient(#F3AE0F, #E38916) #E38916;
 }</string>
     </property>
     <attribute name="horizontalHeaderDefaultSectionSize">
      <number>200</number>
     </attribute>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>100</number>
+    </attribute>
+    <attribute name="verticalHeaderDefaultSectionSize">
+     <number>50</number>
+    </attribute>
+    <attribute name="verticalHeaderMinimumSectionSize">
+     <number>50</number>
+    </attribute>
    </widget>
    <widget class="QPushButton" name="update_btn">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>50</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-image: url(update(1).png);
+background-size: contain;
+border-radius: 35px;
+} 
+QPushButton:active:hover {
+background-image: url(update.png);
+background-size: contain;
+border-radius: 35px;
+} 
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="add_btn">
     <property name="geometry">
      <rect>
       <x>740</x>
@@ -145,7 +186,7 @@ background-image: url(background.jpg);
   display: inline-block;
   color: white;
   text-decoration: none;
-  padding: .2em 2em;
+  padding: .5em 2em;
   outline: none;
   border-width: 2px 0;
   border-style: solid none;
@@ -154,49 +195,11 @@ background-image: url(background.jpg);
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
   transition: 0.2s;
 } 
-QPushButton:active { 
-background: linear-gradient(#f59500, #f5ae00) #f59500; 
-}
-QPushButton:active:hover{ 
-background: linear-gradient(#f5ae00, #f59500) #f5ae00; 
-}</string>
+QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+QPushButton:pressed { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
     </property>
     <property name="text">
-     <string>Обновить</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="add_btn">
-    <property name="geometry">
-     <rect>
-      <x>390</x>
-      <y>400</y>
-      <width>231</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-  display: inline-block;
-  color: white;
-  text-decoration: none;
-  padding: .2em 2em;
-  outline: none;
-  border-width: 2px 0;
-  border-style: solid none;
-  border-color: #FDBE33 #000 #D77206;
-  border-radius: 6px;
-  background: linear-gradient(#F3AE0F, #E38916) #E38916;
-  transition: 0.2s;
-} 
-QPushButton:active { 
-background: linear-gradient(#f59500, #f5ae00) #f59500; 
-}
-QPushButton:active:hover{ 
-background: linear-gradient(#f5ae00, #f59500) #f5ae00; 
-}</string>
-    </property>
-    <property name="text">
-     <string>Добавить </string>
+     <string>Изменить</string>
     </property>
    </widget>
    <widget class="QComboBox" name="combo">
@@ -236,6 +239,36 @@ background: linear-gradient(#f5ae00, #f59500) #f5ae00;
       <string>Пенсии</string>
      </property>
     </item>
+   </widget>
+   <widget class="QPushButton" name="delete_btn">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>400</y>
+      <width>231</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  padding: .5em 2em;
+  outline: none;
+  border-width: 2px 0;
+  border-style: solid none;
+  border-color: #FDBE33 #000 #D77206;
+  border-radius: 6px;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: 0.2s;
+} 
+QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+QPushButton:pressed { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
+    </property>
+    <property name="text">
+     <string>Удалить</string>
+    </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

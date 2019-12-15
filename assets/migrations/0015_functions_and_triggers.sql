@@ -3,9 +3,13 @@
 
 CREATE OR REPLACE FUNCTION set_insert_sum() RETURNS TRIGGER AS
 $$
+    declare
+        res money;
 
 BEGIN
     IF TG_OP = 'INSERT' THEN
+        if (select number from months where id=new.month_id limit 1)>1
+        then
         UPDATE result_summas
         SET result=NEW.month_payment + (select result
                                         from result_summas
@@ -16,6 +20,13 @@ BEGIN
         WHERE id = NEW.id;
         RETURN NEW;
     END IF;
+        if (select number from months where id=new.month_id limit 1)=1 then
+            update result_summas
+            set result=new.month_payment
+            where year=new.year;
+            RETURN NEW;
+        end if;
+         end if;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -62,7 +73,8 @@ BEGIN
                  FROM result_summas AS r
                           JOIN months AS m on r.month_id = m.id
                  WHERE retiree_id =
-                       (SELECT id from retirees where insurance_number_of_individual_personal_account = snils);
+                       (SELECT id from retirees where insurance_number_of_individual_personal_account = snils)
+    order by r.year, m.number;
 
 END;
 $$ LANGUAGE plpgsql;
@@ -75,9 +87,9 @@ grant select on all tables in schema public to pension_db;
 -- +migrate Down
 -- +migrate StatementBegin
 
-DROP FUNCTION if exists info_work_experience CASCADE;
+DROP FUNCTION if exists info_work_experience(snils varchar) CASCADE;
 
-DROP FUNCTION if exists info_summas CASCADE;
-drop function if exists set_insert_sum cascade;
+DROP FUNCTION if exists info_summas(snils varchar) CASCADE;
+drop function if exists set_insert_sum() cascade;
 DROP TRIGGER IF EXISTS insert_sum ON pension_db CASCADE;
 -- +migrate StatementEnd

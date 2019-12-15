@@ -81,7 +81,7 @@ text-transform: none;
      <rect>
       <x>60</x>
       <y>60</y>
-      <width>441</width>
+      <width>651</width>
       <height>28</height>
      </rect>
     </property>
@@ -98,7 +98,7 @@ text-transform: none;
      <string notr="true">QLabel{
 background: rgb(0, 0, 0, 0); 
 font-family: serif, Georgia;
-font-size: 28px;
+font-size: 24px;
 letter-spacing: 2px;
 word-spacing: 2px;
 color: #A8491D;
@@ -136,6 +136,15 @@ selection-color: white;
     <attribute name="horizontalHeaderDefaultSectionSize">
      <number>200</number>
     </attribute>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>90</number>
+    </attribute>
+    <attribute name="verticalHeaderDefaultSectionSize">
+     <number>50</number>
+    </attribute>
+    <attribute name="verticalHeaderMinimumSectionSize">
+     <number>50</number>
+    </attribute>
    </widget>
    <widget class="QPushButton" name="pension_btn">
     <property name="geometry">
@@ -151,7 +160,7 @@ selection-color: white;
   display: inline-block;
   color: white;
   text-decoration: none;
-  padding: .2em 2em;
+  padding: .5em 2em;
   outline: none;
   border-width: 2px 0;
   border-style: solid none;
@@ -160,12 +169,8 @@ selection-color: white;
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
   transition: 0.2s;
 } 
-QPushButton:active { 
-background: linear-gradient(#f59500, #f5ae00) #f59500; 
-}
-QPushButton:active:hover{ 
-background: linear-gradient(#f5ae00, #f59500) #f5ae00; 
-}</string>
+QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+QPushButton:pressed { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
     </property>
     <property name="text">
      <string>Перерасчет</string>
@@ -185,7 +190,7 @@ background: linear-gradient(#f5ae00, #f59500) #f5ae00;
   display: inline-block;
   color: white;
   text-decoration: none;
-  padding: .2em 2em;
+  padding: .5em 2em;
   outline: none;
   border-width: 2px 0;
   border-style: solid none;
@@ -194,12 +199,8 @@ background: linear-gradient(#f5ae00, #f59500) #f5ae00;
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
   transition: 0.2s;
 } 
-QPushButton:active { 
-background: linear-gradient(#f59500, #f5ae00) #f59500; 
-}
-QPushButton:active:hover{ 
-background: linear-gradient(#f5ae00, #f59500) #f5ae00; 
-}</string>
+QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+QPushButton:pressed { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
     </property>
     <property name="text">
      <string>Опыт работы</string>
@@ -219,7 +220,7 @@ background: linear-gradient(#f5ae00, #f59500) #f5ae00;
   display: inline-block;
   color: white;
   text-decoration: none;
-  padding: .2em 2em;
+  padding: .5em 2em;
   outline: none;
   border-width: 2px 0;
   border-style: solid none;
@@ -228,12 +229,8 @@ background: linear-gradient(#f5ae00, #f59500) #f5ae00;
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
   transition: 0.2s;
 } 
-QPushButton:active { 
-background: linear-gradient(#f59500, #f5ae00) #f59500; 
-}
-QPushButton:active:hover{ 
-background: linear-gradient(#f5ae00, #f59500) #f5ae00; 
-}</string>
+QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+QPushButton:pressed { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
     </property>
     <property name="text">
      <string>Личная инф</string>

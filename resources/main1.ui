@@ -50,7 +50,7 @@ background-image:url(background.jpg);
   display: inline-block;
   color: white;
   text-decoration: none;
-  padding: .2em 2em;
+  padding: .5em 2em;
   outline: none;
   border-width: 2px 0;
   border-style: solid none;
@@ -59,12 +59,8 @@ background-image:url(background.jpg);
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
   transition: 0.2s;
 } 
-QPushButton:active:focus { 
-background: linear-gradient(#f59500, #f5ae00) #f59500; 
-}
-QPushButton:active:hover{ 
-background: linear-gradient(#f5ae00, #f59500) #f5ae00; 
-}</string>
+QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+QPushButton:pressed { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
     </property>
     <property name="text">
      <string>Войти</string>
@@ -74,7 +70,7 @@ background: linear-gradient(#f5ae00, #f59500) #f5ae00;
     <property name="geometry">
      <rect>
       <x>550</x>
-      <y>130</y>
+      <y>220</y>
       <width>231</width>
       <height>61</height>
      </rect>
@@ -84,7 +80,7 @@ background: linear-gradient(#f5ae00, #f59500) #f5ae00;
   display: inline-block;
   color: white;
   text-decoration: none;
-  padding: .2em 2em;
+  padding: .5em 2em;
   outline: none;
   border-width: 2px 0;
   border-style: solid none;
@@ -93,12 +89,8 @@ background: linear-gradient(#f5ae00, #f59500) #f5ae00;
   background: linear-gradient(#F3AE0F, #E38916) #E38916;
   transition: 0.2s;
 } 
-QPushButton:active { 
-background: linear-gradient(#f59500, #f5ae00) #f59500; 
-}
-QPushButton:active:hover{ 
-background: linear-gradient(#f5ae00, #f59500) #f5ae00; 
-}</string>
+QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+QPushButton:pressed { background: linear-gradient(#f59500, #f5ae00) #f59500; }</string>
     </property>
     <property name="text">
      <string>Поиск</string>
@@ -144,6 +136,42 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'serif,Georgia'; font-size:20px; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:16pt;&quot;&gt;Добро пожаловать! Вы попали в пенсионный фонд!&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:16pt;&quot;&gt;У вас есть уникальная возможность почувствовать себя работником пенсионного фонда и рассчитать пенсию клиенту! &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="unlogin_btn">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>120</y>
+      <width>231</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  padding: .5em 2em;
+  outline: none;
+  border-width: 2px 0;
+  border-style: solid none;
+  border-color: #FDBE33 #000 #D77206;
+  border-radius: 6px;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: 0.2s;
+} 
+QPushButton:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+QPushButton:pressed { background: linear-gradient(#f59500, #f5ae00) #f59500; }
+QPushButton:active:disabled {
+background: linear-gradient(#dcca9f, #f5ae00) #dcca9f; 
+}
+QPushButton:disabled {
+background: linear-gradient(#dcca9f, #f5ae00) #dcca9f; 
+}</string>
+    </property>
+    <property name="text">
+     <string>Выйти</string>
     </property>
    </widget>
   </widget>
