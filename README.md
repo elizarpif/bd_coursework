@@ -1,6 +1,8 @@
 # bd_coursework
 
-Приложение "Пенсионный фонд"
+An application "Retirement fund". A coursework for the "Databases" course.
+
+## Description (only in RU):
 
 Почувствуйте себя работником пенсионного фонда или пенсионером (по своему усмотрению) 
 
